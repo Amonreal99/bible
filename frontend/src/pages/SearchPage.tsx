@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import type { Bible } from '../types/types';
 import styles from './SearchPage.module.css';
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
 const SearchPage: React.FC = () => {
     const [sp, setSp] = useSearchParams();
     const bookName = sp.get('q') || undefined;
@@ -69,7 +71,7 @@ const SearchPage: React.FC = () => {
         if (verse !== undefined) params.verse = verse;
 
 
-        axios.get<Bible[]>('/api/bible/search', { params })
+        axios.get<Bible[]>(`${API_BASE}/bible/search`, { params })
             .then(res => setResults(res.data))
             .catch(err => console.error('Search error:', err));
     }, [bookName, chapter, verse]);
@@ -86,7 +88,7 @@ const SearchPage: React.FC = () => {
         if (chap !== undefined) params.chapter = chap;
         if (ver !== undefined) params.verse = ver;
 
-        axios.get<Bible[]>('/api//bible/search', { params })
+        axios.get<Bible[]>(`${API_BASE}/bible/search`, { params })
             .then(res => setButtonResults(res.data))
             .catch(err => console.error("Next error:", err));
     }, [bookName, chap, ver]);
