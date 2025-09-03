@@ -17,7 +17,9 @@ public class CorsConfig {
                         .allowedOrigins("http://localhost:5173",
                                 "http://localhost:3000", // Next.js
                                 "https://bible-pi21.vercel.app")
-                        .allowedMethods("GET");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // must include OPTIONS
+                        .allowedHeaders("*") // allow all headers
+                        .allowCredentials(true);
             }
         };
     }
