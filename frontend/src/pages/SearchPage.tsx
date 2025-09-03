@@ -86,7 +86,7 @@ const SearchPage: React.FC = () => {
         if (chap !== undefined) params.chapter = chap;
         if (ver !== undefined) params.verse = ver;
 
-        axios.get<Bible[]>('/api/bible/search', { params })
+        axios.get<Bible[]>(`/${import.meta.env.VITE_API_BASE_URL}/bible/search`, { params })
             .then(res => setButtonResults(res.data))
             .catch(err => console.error("Next error:", err));
     }, [bookName, chap, ver]);
