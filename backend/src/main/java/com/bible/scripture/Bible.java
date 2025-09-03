@@ -25,7 +25,7 @@ public class Bible {
     @Column(name = "verse")
     private Integer verse;
 
-    @Column(name = "text")
+    @Column(name = "text", columnDefinition = "TEXT")
     private String verseText;
 
     @Column(name = "translation")

@@ -12,14 +12,6 @@ public interface BibleRepository extends JpaRepository<Bible, Integer> {
 
     List<Bible> findByBookNameIgnoreCaseAndChapterAndVerse(String bookName, Integer chapter, Integer verse);
 
-    List<Bible> findByBookNameIgnoreCaseAndChapterOrderByVerseAsc(String bookName, Integer chapter);
-
-    List<Bible> findByBookNameIgnoreCaseAndVerse(String bookName, Integer verse);
-
-    List<Bible> findByBookNameContainingIgnoreCase(String bookName);
-
-    List<Bible> findByChapter(Integer chapter);
-
     @Query(value = """
       SELECT book_name
       FROM bible

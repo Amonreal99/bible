@@ -1,8 +1,8 @@
 package com.bible.scripture;
 
-import java.util.Map;
-import java.util.Optional;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/bible")
+@RequestMapping(path = "/bible")
 public class BibleController {
 
     private final BibleService bibleService;
 
+    @Autowired
     public BibleController(BibleService bibleService) {
         this.bibleService = bibleService;
     }
@@ -26,42 +27,30 @@ public class BibleController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> search(
-            @RequestParam(required = false) String bookName,
-            @RequestParam(required = false) Integer chapter,
-            @RequestParam(required = false) Integer verse) {
-
-        String book = (bookName == null || bookName.isBlank()) ? null : bookName.trim();
-
-        if (book != null && chapter != null && verse != null) {
-            return ResponseEntity.ok(bibleService.getByBookChapterVerse(book, chapter, verse));
-        } else if (book != null && chapter != null) {
-            return ResponseEntity.ok(bibleService.getByBookChapter(book, chapter));
-        } else if (book != null && verse != null) {
-            return ResponseEntity.ok(bibleService.getByBookVerse(book, verse));
+    public List<Bible> search(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer chapter, @RequestParam(required = false) Integer verse) {
+        if (bookName != null && chapter != null && verse != null) {
+            return bibleService.getByBookChapterVerse(bookName, chapter, verse);
+        } else if (bookName != null && chapter != null) {
+            return bibleService.getByBookChapter(bookName, chapter);
+        } else if (bookName != null && verse != null) {
+            return bibleService.getByBookVerse(bookName, verse);
         } else if (chapter != null) {
-            return ResponseEntity.ok(bibleService.getByChapter(chapter));
-        } else if (book != null) {
-            return ResponseEntity.ok(bibleService.getBook(book));
+            return bibleService.getByChapter(chapter);
+        } else if (bookName != null) {
+            return bibleService.getBook(bookName);
         } else {
-            return ResponseEntity.badRequest().body(
-                    Map.of("error", "Provide at least one of: bookName, chapter, verse"));
+            return bibleService.getByBookChapterVerse(bookName, chapter, verse);
         }
     }
 
     @GetMapping("/random")
-    public ResponseEntity<Bible> random(
-            @RequestParam(required = false) String bookName,
-            @RequestParam(required = false) Integer chapter) {
-
-        Bible result;
+    public Bible random(@RequestParam(required = false) String bookName, @RequestParam(required = false) Integer chapter) {
         if (bookName != null && chapter != null) {
-            result = bibleService.randomInBookChapter(bookName.trim(), chapter);
-        } else if (bookName != null) {
-            result = bibleService.randomInBook(bookName.trim());
-        } else {
-            result = bibleService.random();
+            return bibleService.randomInBookChapter(bookName, chapter);
         }
-        return ResponseEntity.of(Optional.ofNullable(result));
+        if (bookName != null) {
+            return bibleService.randomInBook(bookName);
+        }
+        return bibleService.random();
     }
 }

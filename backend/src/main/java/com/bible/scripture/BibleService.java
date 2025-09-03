@@ -12,6 +12,7 @@ public class BibleService {
 
     private final BibleRepository bibleRepository;
 
+    @Autowired
     public BibleService(BibleRepository bibleRepository) {
         this.bibleRepository = bibleRepository;
     }
@@ -21,23 +22,23 @@ public class BibleService {
     }
 
     public List<Bible> getByBookChapterVerse(String book, Integer chap, Integer ver) {
-        return bibleRepository.findByBookNameIgnoreCaseAndChapterAndVerse(book, chap, ver);
+        return bibleRepository.findAll().stream().filter(bible -> bible.getBookName().toLowerCase().contains(book.toLowerCase()) && chap.equals(bible.getChapter()) && ver.equals(bible.getVerse())).collect(Collectors.toList());
     }
 
     public List<Bible> getByBookChapter(String book, Integer chap) {
-        return bibleRepository.findByBookNameIgnoreCaseAndChapterOrderByVerseAsc(book, chap);
+        return bibleRepository.findAll().stream().filter(bible -> bible.getBookName().toLowerCase().contains(book.toLowerCase()) && chap.equals(bible.getChapter())).collect(Collectors.toList());
     }
 
     public List<Bible> getByBookVerse(String book, Integer ver) {
-        return bibleRepository.findByBookNameIgnoreCaseAndVerse(book, ver);
+        return bibleRepository.findAll().stream().filter(bible -> bible.getBookName().toLowerCase().contains(book.toLowerCase()) && ver.equals(bible.getVerse())).collect(Collectors.toList());
     }
 
     public List<Bible> getBook(String book) {
-        return bibleRepository.findByBookNameContainingIgnoreCase(book);
+        return bibleRepository.findAll().stream().filter(bible -> bible.getBookName().toLowerCase().contains(book.toLowerCase())).collect(Collectors.toList());
     }
 
     public List<Bible> getByChapter(Integer chap) {
-        return bibleRepository.findByChapter(chap);
+        return bibleRepository.findAll().stream().filter(bible -> chap.equals(bible.getChapter())).collect(Collectors.toList());
     }
 
     public Bible random() {
