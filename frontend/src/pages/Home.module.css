@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+
+}
+
+.innerContainer {
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 20px;
+
+
+}
+
+.section {
+    color: rgb(0, 0, 0);
+}

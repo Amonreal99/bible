@@ -1,0 +1,21 @@
+# Java / Maven
+backend/target/
+*.log
+*.iml
+.idea/
+
+# Node / Vite
+frontend/node_modules/
+frontend/dist/
+
+# OS/editor
+.DS_Store
+.vscode/
+
+# Env & secrets
+frontend/.env*
+backend/src/main/resources/application-local.properties
+
+# Large/local data
+*.csv
+data/

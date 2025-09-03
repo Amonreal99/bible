@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 150px;
+    width: 100%;
+    background: rgb(20, 80, 20);
+    box-shadow: 10px 20px 40px rgba(20, 60, 20, 0.7);
+}
+
+.innerContainer {
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    font-style: italic;
+    font-weight: bolder;
+    color: #9e9100;
+
+
+}
+
+.lists {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    margin-top: 10px;
+}
+
+.innerLists {
+    font-size: xx-large;
+    font-style: italic;
+    font-weight: bolder;
+    background: transparent;
+    border: none;
+    color: #9e9100;
+    text-decoration: none;
+}
+
+.innerLists:hover {
+    background: transparent;
+    color: rgb(106, 98, 19);
+    cursor: pointer;
+}
