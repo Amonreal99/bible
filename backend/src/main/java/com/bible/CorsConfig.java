@@ -16,7 +16,7 @@ public class CorsConfig {
                 registry.addMapping("/api/**")
                         .allowedOrigins("http://localhost:5173",
                                 "http://localhost:3000", // Next.js
-                                "https://premierzone.vercel.app")
+                                "https://bible-pi21.vercel.app")
                         .allowedMethods("GET");
             }
         };
