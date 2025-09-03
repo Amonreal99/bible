@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+
 import styles from '../pages/VerseDay.module.css';
 import { useEffect, useState } from 'react';
 import type { Bible } from '../types/types';
@@ -7,7 +7,6 @@ import axios from 'axios';
 const VerseDay: React.FC = () => {
     const [verse, setVerse] = useState<Bible | null>(null);
     const [error, setError] = useState<string | null>(null);
-    const navigate = useNavigate();
 
     useEffect(() => {
         let cancelled = false;

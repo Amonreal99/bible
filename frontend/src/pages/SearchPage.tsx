@@ -9,7 +9,6 @@ const SearchPage: React.FC = () => {
     const bookName = sp.get('q') || undefined;
     const chapter = sp.get('a') ? Number(sp.get('a')) : undefined;
     const verse = sp.get('b') ? Number(sp.get('b')) : undefined;
-    const bookNum = sp.get('c') ? Number(sp.get('c')) : undefined;
     const [results, setResults] = useState<Bible[]>([]);
     const show = !!(bookName || chapter !== undefined || verse !== undefined);
 

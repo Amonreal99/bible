@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Search.module.css';
 
-type Props = { onClose?: () => void };
 
-const Search: React.FC<Props> = ({ onClose }) => {
+const Search: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
 
