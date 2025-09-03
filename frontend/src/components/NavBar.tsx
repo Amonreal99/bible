@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./NavBar.module.css"
 import Search from "./Search";
-import Home from '../pages/Home';
 import { Link, useLocation } from "react-router-dom";
 
 

@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from '../pages/VerseDay.module.css';
 import { useEffect, useState } from 'react';
 import type { Bible } from '../types/types';
