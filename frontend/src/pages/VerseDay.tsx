@@ -12,6 +12,7 @@ const VerseDay: React.FC = () => {
         let cancelled = false;
         (async () => {
             try {
+                console.log("API BASE URL:", import.meta.env.VITE_API_BASE_URL);
                 const { data } = await axios.get<Bible>(`${import.meta.env.VITE_API_BASE_URL}/bible/random`); // or pass bookName/chapter
                 if (!cancelled) {
                     setVerse(data);
