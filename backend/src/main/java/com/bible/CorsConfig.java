@@ -13,10 +13,11 @@ public class CorsConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**")
+                registry.addMapping("/**")
                         .allowedOrigins("http://localhost:5173",
                                 "http://localhost:3000", // Next.js
-                                "https://bible-pi21.vercel.app")
+                                "https://bible-pi21.vercel.app",
+                                "https://bible-pi21-7viwf067r-armando-monreals-projects.vercel.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // must include OPTIONS
                         .allowedHeaders("*") // allow all headers
                         .allowCredentials(true);
